@@ -1,3 +1,9 @@
+import { ButtonGoogle } from '@/components/ui/button-google';
+
 export default function Home() {
-  return <div>Hello World</div>;
+  return (
+    <div>
+      <ButtonGoogle />
+    </div>
+  );
 }
