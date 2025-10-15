@@ -26,12 +26,16 @@ export default function Auth() {
           </p>
         </div>
       </div>
-      <Card className="max-w-[500px]">
+      <Card className="max-w-[500px] w-full">
         <CardContent className="flex justify-center items-center">
           <Tabs defaultValue="sign-in" className="w-[400px]">
             <TabsList className="flex justify-center items-center w-full mb-4">
-              <TabsTrigger value="sign-in">Entrar</TabsTrigger>
-              <TabsTrigger value="sign-up">Cadastrar</TabsTrigger>
+              <TabsTrigger value="sign-in" className="cursor-pointer">
+                Entrar
+              </TabsTrigger>
+              <TabsTrigger value="sign-up" className="cursor-pointer">
+                Cadastrar
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="sign-in">
               <SignInTab />
