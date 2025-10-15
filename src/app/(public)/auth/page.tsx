@@ -2,10 +2,15 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Logo } from '@/components/ui/logo';
 import { SignUpTab } from '@/components/auth/sign-up-tab';
+import { ToogleTheme } from '@/components/ui/toogle-theme';
 
 export default function Auth() {
   return (
-    <main className="bg-background flex flex-col h-screen w-screen items-center justify-center gap-4">
+    <main className="bg-background flex flex-col h-screen w-screen items-center justify-center gap-4 relative">
+      <div className="absolute top-4 right-4">
+        <ToogleTheme />
+      </div>
+
       <div className="w-full max-w-md space-y-4 animate-fade-in">
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2 mb-4">
