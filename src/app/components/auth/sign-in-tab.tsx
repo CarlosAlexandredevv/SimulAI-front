@@ -33,6 +33,10 @@ export function SignInTab() {
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   function onSubmit(data: SignInSchema) {
