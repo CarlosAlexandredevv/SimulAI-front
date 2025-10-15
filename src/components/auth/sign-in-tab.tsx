@@ -1,69 +1,46 @@
 'use client';
-
 import { z } from 'zod';
-import { Form, FormField, FormItem } from '../ui/form';
 import { useForm } from 'react-hook-form';
-import { FormLabel, FormControl, FormMessage } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import ButtonAuth from './button-auth';
+import { useState } from 'react';
+import { signInWithEmail } from '@/lib/auth';
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '../ui/form';
 import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
 } from '../ui/input-group';
-import { Mail, User, Lock, Eye } from 'lucide-react';
+import { Mail, Lock, Eye } from 'lucide-react';
+import ButtonAuth from './button-auth';
 import ButtonGoogle from './button-google';
-import { signInWithGoogle, signUp } from '@/lib/auth';
-import { useState } from 'react';
-export const signUpSchema = z.object({
-  name: z.string().min(1, 'Nome é obrigatório'),
-  email: z.email('Insira um email válido').min(1, 'Email é obrigatório'),
-  password: z
-    .string()
-    .min(8, 'Senha é obrigatória e deve ter pelo menos 8 caracteres'),
+import { signInWithGoogle } from '@/lib/auth';
+
+export const signInSchema = z.object({
+  email: z.email('Insira um email válido'),
+  password: z.string().min(1, 'Senha é obrigatória'),
 });
 
-export type SignUpSchema = z.infer<typeof signUpSchema>;
+export type SignInSchema = z.infer<typeof signInSchema>;
 
-export function SignUpTab() {
+export function SignInTab() {
   const [showPassword, setShowPassword] = useState(false);
-  const form = useForm<SignUpSchema>({
-    resolver: zodResolver(signUpSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
+  const form = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
   });
 
-  function onSubmit(data: SignUpSchema) {
-    signUp(data.email, data.name, data.password);
+  function onSubmit(data: SignInSchema) {
+    signInWithEmail(data.email, data.password);
   }
   return (
     <Form {...form}>
       <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nome</FormLabel>
-              <FormControl>
-                <InputGroup>
-                  <InputGroupInput
-                    placeholder="John Doe"
-                    {...field}
-                    type="text"
-                  />
-                  <InputGroupAddon>
-                    <User />
-                  </InputGroupAddon>
-                </InputGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="email"
@@ -113,7 +90,7 @@ export function SignUpTab() {
         />
         <div className="flex flex-col gap-4 items-center">
           <ButtonAuth type="submit" className="cursor-pointer">
-            Cadastrar
+            Entrar
           </ButtonAuth>
           <span className="text-sm text-muted-foreground">ou continue com</span>
           <ButtonGoogle type="button" onClick={() => signInWithGoogle()} />

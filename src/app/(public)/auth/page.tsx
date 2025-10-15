@@ -3,10 +3,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Logo } from '@/components/ui/logo';
 import { SignUpTab } from '@/components/auth/sign-up-tab';
 import { ToogleTheme } from '@/components/ui/toogle-theme';
+import { SignInTab } from '@/components/auth/sign-in-tab';
 
 export default function Auth() {
   return (
-    <main className="bg-background flex flex-col h-screen w-screen items-center justify-center gap-4 relative">
+    <main className="bg-background flex flex-col h-screen w-screen items-center justify-center gap-4 relative px-4">
       <div className="absolute top-4 right-4">
         <ToogleTheme />
       </div>
@@ -25,14 +26,16 @@ export default function Auth() {
           </p>
         </div>
       </div>
-      <Card>
+      <Card className="max-w-[500px]">
         <CardContent className="flex justify-center items-center">
           <Tabs defaultValue="sign-in" className="w-[400px]">
             <TabsList className="flex justify-center items-center w-full mb-4">
               <TabsTrigger value="sign-in">Entrar</TabsTrigger>
               <TabsTrigger value="sign-up">Cadastrar</TabsTrigger>
             </TabsList>
-            <TabsContent value="sign-in"></TabsContent>
+            <TabsContent value="sign-in">
+              <SignInTab />
+            </TabsContent>
             <TabsContent value="sign-up">
               <SignUpTab />
             </TabsContent>
