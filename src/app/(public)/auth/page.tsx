@@ -1,9 +1,14 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Card, CardContent } from '@/components/ui/card';
-import { Logo } from '@/components/ui/logo';
-import { SignUpTab } from '@/components/auth/sign-up-tab';
-import { ToogleTheme } from '@/components/ui/toogle-theme';
-import { SignInTab } from '@/components/auth/sign-in-tab';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/app/components/ui/tabs';
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Logo } from '@/app/components/ui/logo';
+import { SignUpTab } from '@/app/components/auth/sign-up-tab';
+import { ToogleTheme } from '@/app/components/ui/toogle-theme';
+import { SignInTab } from '@/app/components/auth/sign-in-tab';
 
 export default function Auth() {
   return (

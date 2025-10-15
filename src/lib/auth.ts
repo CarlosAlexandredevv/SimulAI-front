@@ -52,6 +52,17 @@ export async function signInWithEmail(email: string, password: string) {
   }
 }
 
+export async function getSession() {
+  try {
+    const response = await api.get('/auth/get-session');
+    return response.data.user;
+  } catch (error: unknown) {
+    const translatedError = translateResponse(error as ApiError);
+    toast.error(translatedError || 'Erro ao obter sessão');
+    return null;
+  }
+}
+
 export function serverSignOut() {
   auth.signOut();
 }
