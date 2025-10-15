@@ -31,16 +31,21 @@ export type SignInSchema = z.infer<typeof signInSchema>;
 
 export function SignInTab() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+    defaultValues: { email: '', password: '' },
   });
 
-  function onSubmit(data: SignInSchema) {
-    signInWithEmail(data.email, data.password);
+  async function onSubmit(data: SignInSchema) {
+    setIsSubmitting(true);
+    try {
+      await signInWithEmail(data.email, data.password);
+    } catch {
+      // O erro já é tratado na função signInWithEmail
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   return (
     <Form {...form}>
@@ -93,11 +98,19 @@ export function SignInTab() {
           )}
         />
         <div className="flex flex-col gap-4 items-center">
-          <ButtonAuth type="submit" className="cursor-pointer">
-            Entrar
+          <ButtonAuth
+            disabled={isSubmitting}
+            type="submit"
+            className="cursor-pointer"
+          >
+            {isSubmitting ? 'Entrando...' : 'Entrar'}
           </ButtonAuth>
           <span className="text-sm text-muted-foreground">ou continue com</span>
-          <ButtonGoogle type="button" onClick={() => signInWithGoogle()} />
+          <ButtonGoogle
+            disabled={isSubmitting}
+            type="button"
+            onClick={() => signInWithGoogle()}
+          />
         </div>
       </form>
     </Form>

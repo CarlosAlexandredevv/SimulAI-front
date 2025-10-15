@@ -27,6 +27,7 @@ export type SignUpSchema = z.infer<typeof signUpSchema>;
 
 export function SignUpTab() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -36,8 +37,14 @@ export function SignUpTab() {
     },
   });
 
-  function onSubmit(data: SignUpSchema) {
-    signUp(data.email, data.name, data.password);
+  async function onSubmit(data: SignUpSchema) {
+    setIsSubmitting(true);
+    try {
+      await signUp(data.email, data.name, data.password);
+    } catch {
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   return (
     <Form {...form}>
@@ -112,11 +119,19 @@ export function SignUpTab() {
           )}
         />
         <div className="flex flex-col gap-4 items-center">
-          <ButtonAuth type="submit" className="cursor-pointer">
-            Cadastrar
+          <ButtonAuth
+            disabled={isSubmitting}
+            type="submit"
+            className="cursor-pointer"
+          >
+            {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
           </ButtonAuth>
           <span className="text-sm text-muted-foreground">ou continue com</span>
-          <ButtonGoogle type="button" onClick={() => signInWithGoogle()} />
+          <ButtonGoogle
+            disabled={isSubmitting}
+            type="button"
+            onClick={() => signInWithGoogle()}
+          />
         </div>
       </form>
     </Form>
