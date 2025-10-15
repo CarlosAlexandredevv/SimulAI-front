@@ -1,5 +1,4 @@
 'use client';
-import { ButtonGoogle } from '@/components/ui/button-google';
 import { api } from '@/lib/axios';
 import { useEffect } from 'react';
 
@@ -12,9 +11,5 @@ export default function Home() {
     getSession();
   }, []);
 
-  return (
-    <div>
-      <ButtonGoogle />
-    </div>
-  );
+  return <div></div>;
 }
