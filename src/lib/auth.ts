@@ -32,6 +32,7 @@ export async function signUp(email: string, name: string, password: string) {
       email,
       password,
     });
+    window.location.href = '/dashboard';
     toast.success('Cadastro realizado com sucesso');
   } catch (error: unknown) {
     const translatedError = translateResponse(error as ApiError);
@@ -45,6 +46,7 @@ export async function signInWithEmail(email: string, password: string) {
       email,
       password,
     });
+    window.location.href = '/dashboard';
     toast.success('Login realizado com sucesso');
   } catch (error: unknown) {
     const translatedError = translateResponse(error as ApiError);
@@ -63,6 +65,7 @@ export async function getSession() {
   }
 }
 
-export function serverSignOut() {
-  auth.signOut();
+export async function serverSignOut() {
+  await auth.signOut();
+  window.location.href = '/auth';
 }

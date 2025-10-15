@@ -1,6 +1,8 @@
 'use client';
 import { useUser } from '@/hooks/use-user';
 import Image from 'next/image';
+import { Button } from '@/app/components/ui/button';
+import { serverSignOut } from '@/lib/auth';
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -30,6 +32,9 @@ export default function Dashboard() {
       <p>
         Você possui {user?.name ? 'name' : 'name não possui'} {user?.name}
       </p>
+      <Button className="text-red-500" onClick={() => serverSignOut()}>
+        Sair
+      </Button>
     </div>
   );
 }
