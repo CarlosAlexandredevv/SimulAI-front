@@ -109,6 +109,7 @@ export function SignInTab() {
           <ButtonGoogle
             disabled={isSubmitting}
             type="button"
+            className="cursor-pointer"
             onClick={() => signInWithGoogle()}
           />
         </div>
