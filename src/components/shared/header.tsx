@@ -21,6 +21,8 @@ import {
 } from '../ui/tooltip';
 import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
 import { ToogleTheme } from '../ui/toogle-theme';
+import { usePathname } from 'next/navigation';
+
 const navItems = [
   { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { path: '/simulations', icon: BookOpen, label: 'Simulados' },
@@ -28,24 +30,24 @@ const navItems = [
   { path: '/profile', icon: User, label: 'Perfil' },
 ];
 
-const isActive = (path: string) => location.pathname === path;
-
 export function Header() {
   const { user } = useUser();
-  const firstName = user?.name?.trim()?.split(' ')?.[0] || 'Usuário';
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname.startsWith(path);
 
+  const firstName = user?.name?.trim()?.split(' ')?.[0] || 'Usuário';
   const firstNameInitial = firstName.charAt(0)?.toUpperCase();
 
   return (
     <header className="w-full border-b border-border">
-      <div className="flex items-center sm:justify-around justify-between container mx-auto pr-4">
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
         <Logo />
-        <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-2">
           {navItems.map((item) => (
             <Link key={item.path} href={item.path}>
               <Button
                 variant={isActive(item.path) ? 'default' : 'ghost'}
-                className="gap-2"
+                className="gap-2 cursor-pointer"
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}
@@ -90,8 +92,8 @@ export function Header() {
             </span>
           </Link>
 
-          <Link href="simulations/new-simulation">
-            <Button className="gap-2">
+          <Link href="/simulations/new-simulation">
+            <Button className="gap-2 cursor-pointer">
               <Zap className="w-4 h-4" />
               <span className="hidden sm:inline">Novo Simulado</span>
             </Button>
@@ -107,13 +109,13 @@ export function Header() {
           </Button>
         </div>
       </div>
-      <nav className="md:hidden border-y border-border bg-card/50 backdrop-blur sticky top-[73px] z-40">
-        <div className="container mx-auto px-4 py-2">
+      <nav className="lg:hidden border-y border-border bg-card/50 backdrop-blur sticky top-[73px] z-40">
+        <div className=" py-2">
           <div className="flex items-center justify-around">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path}>
                 <Button
-                  className="flex flex-col gap-1 h-auto py-2 px-3 text-xs"
+                  className="flex flex-col gap-1 h-auto py-2 px-3 text-xs cursor-pointer"
                   variant={isActive(item.path) ? 'default' : 'ghost'}
                   size="sm"
                 >
