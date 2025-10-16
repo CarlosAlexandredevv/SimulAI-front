@@ -1,14 +1,9 @@
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from '@/app/components/ui/tabs';
-import { Card, CardContent } from '@/app/components/ui/card';
-import { Logo } from '@/app/components/ui/logo';
-import { SignUpTab } from '@/app/components/auth/sign-up-tab';
-import { ToogleTheme } from '@/app/components/ui/toogle-theme';
-import { SignInTab } from '@/app/components/auth/sign-in-tab';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Card, CardContent } from '@/components/ui/card';
+import { Logo } from '@/components/ui/logo';
+import { SignUpTab } from '@/components/auth/sign-up-tab';
+import { ToogleTheme } from '@/components/ui/toogle-theme';
+import { SignInTab } from '@/components/auth/sign-in-tab';
 
 export default function Auth() {
   return (
@@ -19,10 +14,8 @@ export default function Auth() {
 
       <div className="w-full max-w-md space-y-4 animate-fade-in">
         <div className="text-center space-y-2">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="p-3 bg-gradient-primary rounded-xl">
-              <Logo size={56} />
-            </div>
+          <div className="flex items-center justify-center">
+            <Logo />
           </div>
 
           <h1 className="text-3xl font-bold">Bem-vindo ao SimulAI</h1>
