@@ -8,7 +8,7 @@ export function Logo() {
       width={200}
       height={200}
       quality={100}
-      className="size-24 object-cover"
+      className="size-18 object-cover"
       priority
     />
   );

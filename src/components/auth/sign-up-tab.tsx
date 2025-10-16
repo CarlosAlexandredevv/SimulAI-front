@@ -5,7 +5,6 @@ import { Form, FormField, FormItem } from '../ui/form';
 import { useForm } from 'react-hook-form';
 import { FormLabel, FormControl, FormMessage } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import ButtonAuth from './button-auth';
 import {
   InputGroup,
   InputGroupInput,
@@ -15,6 +14,7 @@ import { Mail, User, Lock, Eye } from 'lucide-react';
 import ButtonGoogle from './button-google';
 import { signInWithGoogle, signUp } from '@/lib/auth';
 import { useState } from 'react';
+import { Button } from '../ui/button';
 export const signUpSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
   email: z.email('Insira um email válido').min(1, 'Email é obrigatório'),
@@ -119,13 +119,13 @@ export function SignUpTab() {
           )}
         />
         <div className="flex flex-col gap-4 items-center">
-          <ButtonAuth
+          <Button
             disabled={isSubmitting}
             type="submit"
-            className="cursor-pointer"
+            className="cursor-pointer w-full py-6"
           >
             {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
-          </ButtonAuth>
+          </Button>
           <span className="text-sm text-muted-foreground">ou continue com</span>
           <ButtonGoogle
             disabled={isSubmitting}
