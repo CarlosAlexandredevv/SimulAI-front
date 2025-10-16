@@ -18,9 +18,9 @@ import {
   InputGroupAddon,
 } from '../ui/input-group';
 import { Mail, Lock, Eye } from 'lucide-react';
-import ButtonAuth from './button-auth';
 import ButtonGoogle from './button-google';
 import { signInWithGoogle } from '@/lib/auth';
+import { Button } from '../ui/button';
 
 export const signInSchema = z.object({
   email: z.email('Insira um email válido'),
@@ -98,17 +98,18 @@ export function SignInTab() {
           )}
         />
         <div className="flex flex-col gap-4 items-center">
-          <ButtonAuth
+          <Button
             disabled={isSubmitting}
             type="submit"
-            className="cursor-pointer"
+            className="cursor-pointer w-full py-6"
           >
             {isSubmitting ? 'Entrando...' : 'Entrar'}
-          </ButtonAuth>
+          </Button>
           <span className="text-sm text-muted-foreground">ou continue com</span>
           <ButtonGoogle
             disabled={isSubmitting}
             type="button"
+            className="cursor-pointer"
             onClick={() => signInWithGoogle()}
           />
         </div>
