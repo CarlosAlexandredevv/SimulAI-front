@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText } from 'lucide-react';
 import { RadioGroupTests } from './radio-group-tests';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function CardTypeTest() {
   return (
@@ -11,9 +12,11 @@ export function CardTypeTest() {
           Tipo de Prova
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <RadioGroupTests />
-      </CardContent>
+      <ScrollArea className="max-h-[400px]">
+        <CardContent>
+          <RadioGroupTests />
+        </CardContent>
+      </ScrollArea>
     </Card>
   );
 }
